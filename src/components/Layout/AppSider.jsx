@@ -1,4 +1,4 @@
-import { Layout, Card, Statistic, List, Typography, Spin } from 'antd';
+import { Layout, Card, Statistic, List, Typography, Spin, Tag } from 'antd';
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import { fakeFetchCrypto, fetchAssets } from '../../api';
@@ -53,14 +53,19 @@ function AppSider() {
               <List
                 size='small'
                 dataSource={[
-                  { title: 'Total Profit', value: asset.totalProfit },
-                  { title: 'Asset Amount', value: asset.amount },
+                  { title: 'Total Profit', value: asset.totalProfit, widthTag: true},
+                  { title: 'Asset Amount', value: asset.amount, isPlane: true },
                   { title: 'Difference', value: asset.growPercent },
                 ]}
                 renderItem={(item) => (
                 <List.Item>
                     <span>{item.title}</span>
-                    <span>{item.value}</span>
+                    <span>
+                      {item.widthTag && <Tag color={asset.grow ? 'green' : 'red'}>{asset.growPercent}%</Tag>}
+                      {item.isPlane && item.value}
+                      {!item.isPlane && <Typography.Text type={asset.grow ? 'success' : 'danger'}>{item.value.toFixed(2)}$
+                      </Typography.Text>}
+                    </span>
                 </List.Item>
               )}
         />
