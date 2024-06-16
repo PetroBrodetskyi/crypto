@@ -1,4 +1,5 @@
-import { Flex, Select, Space, Typography, Divider, Form, Button, InputNumber, DatePicker } from "antd";
+import { Flex, Select, Space, Typography, Divider, Form, Button, InputNumber, DatePicker, Result } from "antd";
+import CoinInfo from './CoinInfo';
 import { useState } from "react";
 import { useCrypto } from "../../context/crypto-context";
 
@@ -12,11 +13,26 @@ const validateMessages = {
   } 
 };
 
-function AddAssetForm() {
+function AddAssetForm({ onClose }) {
     const [form] = Form.useForm()
     const {crypto} = useCrypto()
     const [coin, setCoin] = useState(null)
+    const [submitted, setSubmitted] = useState(false)
     
+    if (submitted) {
+      return (
+        <Result
+          status="success"
+          title="New Asset Added"
+          subTitle={`Added ${42} of ${coin.name} by price ${24}`}
+          extra={[
+            <Button type="primary" key="console" onClick={onClose}>
+              Close
+            </Button>,
+          ]}
+        />
+      )
+    }
 
     if (!coin) {
         return (
@@ -41,12 +57,20 @@ function AddAssetForm() {
     }
 
     function onFinish(values) {
-        
+        setSubmitted(true)
     }
 
-    function handleAmountChange(value) {
+  function handleAmountChange(value) {
+      const price = form.getFieldValue('price')
         form.setFieldsValue({
-            total: value * coin.price,
+            total: Number(value * price).toFixed(2),
+        })
+  }
+  
+  function handlePriceChange(value) {
+    const amount = form.getFieldValue('amount')
+        form.setFieldsValue({
+            total: Number(amount * value).toFixed(2),
         })
     }
 
@@ -68,10 +92,7 @@ function AddAssetForm() {
         onFinish={onFinish}
         validateMessages={validateMessages}
         >
-        <Flex align="center">
-                <img src={coin.icon} alt={coin.name} style={{ width: 40, marginRight: 10 }} />
-                <Typography.Title level={2} style={{ margin: 0 }}>{coin.name}</Typography.Title>
-        </Flex>
+        <CoinInfo coin={coin}/>
         <Divider />
         
     <Form.Item
@@ -92,7 +113,7 @@ function AddAssetForm() {
       label="Price"
       name="price"
     >
-      <InputNumber disabled style={{ width: '100%' }} />
+      <InputNumber onChange={handlePriceChange} style={{ width: '100%' }} />
     </Form.Item>
         
     <Form.Item
