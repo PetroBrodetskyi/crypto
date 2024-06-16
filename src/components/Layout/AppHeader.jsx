@@ -62,7 +62,7 @@ function AppHeader() {
         <CoinInfoModal coin={coin}/>
     </Modal>
 
-    <Drawer width={600} title="Add Asset" onClose={() => setDrawer(false)} open={drawer} destroyOnClose>
+    <Drawer width={440} title="Add Asset" onClose={() => setDrawer(false)} open={drawer} destroyOnClose>
       <AddAssetForm onClose={() => setDrawer(false)} />
       </Drawer>
   </Layout.Header>

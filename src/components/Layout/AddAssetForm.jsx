@@ -87,13 +87,13 @@ function AddAssetForm({ onClose }) {
         form={form}
             name="basic"
             labelCol={{
-            span: 4,
+            span: 6,
             }}
             wrapperCol={{
-            span: 10,
+            span: 16,
             }}
             style={{
-            maxWidth: 600,
+            maxWidth: 500,
             }}
         initialValues={{
             price: Number(coin.price.toFixed(2)),
