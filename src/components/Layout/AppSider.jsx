@@ -40,7 +40,7 @@ function AppSider() {
                     </Tag>
                   )}
                   {item.isPlane && item.value}
-                  {!item.isPlane && !item.widthTag && (
+                  {!item.isPlane && (
                     <Typography.Text type={asset.grow ? 'success' : 'danger'}>
                       {item.value.toFixed(2)}$
                     </Typography.Text>
