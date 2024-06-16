@@ -2,7 +2,18 @@ import { Flex, Select, Space, Typography, Divider, Form, Button, InputNumber, Da
 import { useState } from "react";
 import { useCrypto } from "../../context/crypto-context";
 
+const validateMessages = {
+  required: "${label} is required!",
+  types: {
+      number: '${label} is not valid number'
+    },
+  number: {
+      range: '${label} must be between ${min} and ${max} ',
+  } 
+};
+
 function AddAssetForm() {
+    const [form] = Form.useForm()
     const {crypto} = useCrypto()
     const [coin, setCoin] = useState(null)
     
@@ -33,7 +44,14 @@ function AddAssetForm() {
         
     }
 
+    function handleAmountChange(value) {
+        form.setFieldsValue({
+            total: value * coin.price,
+        })
+    }
+
     return <Form
+        form={form}
             name="basic"
             labelCol={{
             span: 4,
@@ -44,8 +62,11 @@ function AddAssetForm() {
             style={{
             maxWidth: 600,
             }}
-            initialValues={{}}
-            onFinish={onFinish}
+        initialValues={{
+            price: Number(coin.price.toFixed(2)),
+            }}
+        onFinish={onFinish}
+        validateMessages={validateMessages}
         >
         <Flex align="center">
                 <img src={coin.icon} alt={coin.name} style={{ width: 40, marginRight: 10 }} />
@@ -61,11 +82,10 @@ function AddAssetForm() {
             required: true,
             type: 'number',
             min: 0,
-            message: 'Please input your username!',
         },
       ]}
     >
-      <InputNumber style={{ width: '100%' }} />
+      <InputNumber placeholder="Enter coin amount" onChange={handleAmountChange} style={{ width: '100%' }} />
     </Form.Item>
 
     <Form.Item
