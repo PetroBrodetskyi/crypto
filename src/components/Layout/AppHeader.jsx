@@ -56,7 +56,7 @@ function AppHeader() {
       </Space>
     )}
     />
-    <Button type="primary" onClick={() => setDrawer(true)}>Add Asset</Button>
+    <Button type="primary" style={{ width: 140, backgroundColor: '#228B22' }} onClick={() => setDrawer(true)}>Add Asset</Button>
 
     <Modal open={modal} onCancel={() => setModal(false)} footer={null}>
         <CoinInfoModal coin={coin}/>

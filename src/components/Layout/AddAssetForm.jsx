@@ -27,7 +27,7 @@ function AddAssetForm({ onClose }) {
           title="New Asset Added"
           subTitle={`Added ${assetRef.current.amount} of ${coin.name} by price ${assetRef.current.price}`}
           extra={[
-            <Button type="primary" key="console" onClick={onClose}>
+            <Button type="primary" style={{ width: 140, backgroundColor: '#228B22' }} key="console" onClick={onClose}>
               Close
             </Button>,
           ]}
@@ -141,7 +141,7 @@ function AddAssetForm({ onClose }) {
     </Form.Item>
 
     <Form.Item>
-      <Button type="primary" htmlType="submit">
+      <Button type="primary" style={{ width: 140, backgroundColor: '#228B22' }} htmlType="submit">
         Add Asset
       </Button>
     </Form.Item>
