@@ -39,7 +39,7 @@ function AppHeader() {
   return <Layout.Header style={headerStyle}>
     <Select
     style={{
-      width: 250,
+      width: '23.4%',
       }}
       open={select}
       onSelect={handleSelect}
