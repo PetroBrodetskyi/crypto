@@ -1,4 +1,4 @@
-# Crypto Portfolio Tracker
+# Crypto Portfolio Tracker <img src="./public/dollar.svg" alt="My SVG Icon" width="48" height="48" />
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://petrobrodetskyi.github.io/crypto)
 [![GitHub](https://img.shields.io/badge/github-repo-blue)](https://github.com/PetroBrodetskyi/crypto)
@@ -58,11 +58,10 @@ Crypto Portfolio Tracker - це веб-додаток, створений у н�
 - Vite
 - React
 - Ant Design
-- Context API
 
 ## Контакти
 
 Якщо у вас є питання або пропозиції, будь ласка, зв'яжіться зі мною:
 
-- Email: [petro@example.com](mailto:petro@example.com)
+- Email: [petro@example.com](mailto:petro.brodetskyi@gmail.com)
 - GitHub: [PetroBrodetskyi](https://github.com/PetroBrodetskyi)
